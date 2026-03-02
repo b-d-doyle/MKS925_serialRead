@@ -67,6 +67,17 @@ void OLED_show(char* msg){
   display.print(msg);
   display.display();
 }
+
+byte OLED_errStatus(){
+  Wire.beginTransmission(SCREEN_ADDRESS);
+  Wire.write(0xE3); //Command for no operation (NOP)
+  return Wire.endTransmission();
+}
+
+int OLED_reconnect(){
+  display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)
+  return 0; //TODO: detect if successful
+}
 /////////////End OLED stuff///////////////
 
 /////////////Begin pressure reading stuff///////////////
